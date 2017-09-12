@@ -15,6 +15,13 @@ module.exports = {view: function(){
         ]);
     };
     peers = peers.sort(rs.sort("name"));
+    
+    function getTimeStamp(last_contact){
+        var myDate = new Date(new Number(last_contact)*1000)
+        var str = myDate.getFullYear() + "-" + ( myDate.getMonth() + 1) + "-" + myDate.getDate()+ " ";
+        str += myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds();
+        return str;
+    }
 
     //building peerlist (prebuild for counting)
     var online = 0;
@@ -33,12 +40,13 @@ module.exports = {view: function(){
             }
             return m("li",{
                 style:"color:" + (location.is_online ? "lime": "grey")
-                    + ";cursor:pointer",
+                    + ";cursor:pointer;",
                 onclick: function(){
                     m.route("/chat?lobby=" + location.chat_id)
                 }
 
-            }, location.location);
+            }, [location.location, 
+            m("div",{style: "color:grey;"}, location.custom_state_string)]);
         });
 
         //return friend (peer + locations)
@@ -52,11 +60,11 @@ module.exports = {view: function(){
                     })
                 )
             ]),
-            //peername + locations
+            //peername + last contact + locations
             m("div.flexwidemember",[
                 m("h1[style=margin-bottom:1mm;]",
                     {style:"color:" + (isonline ? "lime": "grey")} ,
-                    peer.name
+                    peer.name + " " + getTimeStamp(peer.last_contact)
                 ),
                 m("ul", loclist ),
             ]),

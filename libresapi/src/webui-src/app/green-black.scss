@@ -152,6 +152,21 @@ textarea#txtNewMsg{
     box-sizing: border-box;
 }
 
+.txtCert{
+    color: lime;
+    font-family: monospace;
+    background-color: black;
+    border-color: lime;
+    font-size: 100%;
+    border-radius: 3mm;
+    border-width: 1mm;
+    padding: 2mm;
+    margin-bottom: 1mm;
+    margin-right: 1mm;
+    width: 70em;
+}
+
+
 
 input#txtMsgKeyword{
     color: lime;

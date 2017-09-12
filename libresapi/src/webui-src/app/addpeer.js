@@ -23,7 +23,7 @@ module.exports = {
                 m("p","Your own key, give it to your friends"),
                 m("pre", owncert.cert_string),
                 m("p","paste your friends key below"),
-			    m("textarea", {
+			    m("textarea.txtCert", {
                     ref:"cert",
 			        cols:"70",
 			        rows:"16",
